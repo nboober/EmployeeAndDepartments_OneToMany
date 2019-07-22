@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/processDepartment}" th:object="${department}" method="post">
+
+        <input type="hidden" th:field="*{id}"/>
+        Name:
+        <input type="text" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"/><br/>
+
+        <input type="submit" value="Submit" />
+
+    </form>
+
+</body>
+</html>

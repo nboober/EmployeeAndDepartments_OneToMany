@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <a href="/addEmployee">Add an Employee</a>
+    <br/>
+    <a href="/addDepartment">Add a Department</a>
+
+    <h1 th:text="${#lists.size(departments)>0}?'Departments':'No Departments yet...'"></h1>
+
+    <div th:each="department : ${departments}">
+        <h2 th:text="${department.name}"></h2>
+
+        <h3 th:text="${#lists.size(department.employee)>0}? 'Employees' : 'No Employees yet...'"></h3>
+
+        <ul>
+            <li th:each="employee : ${department.employee}">
+                <h4 th:text="${employee.name}"></h4>
+
+                <a th:href="@{/updateEmployee/{id} (id=${employee.id})}">Update this Employee</a><br/>
+                <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}">Delete this Employee</a>
+            </li>
+        </ul>
+
+        <a th:href="@{/updateDepartment/{id} (id=${department.id})}">Update this Department</a><br/>
+        <a th:href="@{/deleteDepartment/{id}(id=${department.id})}">Delete this Department</a>
+
+    </div>
+
+
+</body>
+</html>
