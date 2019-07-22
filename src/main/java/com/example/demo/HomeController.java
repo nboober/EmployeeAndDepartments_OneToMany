@@ -29,7 +29,6 @@ public class HomeController {
         model.addAttribute("employee", new Employee());
         model.addAttribute("departments", departmentRepository.findAll());
 
-
         return "employeeForm";
     }
 
@@ -40,9 +39,9 @@ public class HomeController {
     }
 
     @PostMapping("/processEmployee")
-    public String processEmployee(@Valid Employee employee, BindingResult result
-    ){
+    public String processEmployee(@Valid Employee employee,BindingResult result, Model model){
         if(result.hasErrors()){
+            model.addAttribute("departments", departmentRepository.findAll());
             return "employeeForm";
         }
         employeeRepository.save(employee);
